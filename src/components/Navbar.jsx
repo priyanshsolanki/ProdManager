@@ -1,64 +1,60 @@
-// components/Navbar.js
 import React, { useState } from 'react';
+import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
-const Navbar = () => {
-  const [isNavOpen, setIsNavOpen] = useState(false);
-  
-  const toggleNav = () => setIsNavOpen(!isNavOpen);
-  
-  const closeNav = () => setIsNavOpen(false);
+const CustomNavbar = () => {
+  const [expanded, setExpanded] = useState(false);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
-      <div className="container">
-        <NavLink className="navbar-brand fw-bold" to="/" onClick={closeNav}>
-          <i className="fas fa-box me-2"></i>ProdManager
-        </NavLink>
-        <button 
-          className="navbar-toggler" 
-          type="button" 
-          onClick={toggleNav}
-          aria-controls="navbarNav"
-          aria-expanded={isNavOpen}
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className={`collapse navbar-collapse ${isNavOpen ? 'show' : ''}`} id="navbarNav">
-          <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <NavLink 
-                className={({isActive}) => `nav-link ${isActive ? 'active' : ''}`}
-                to="/"
-                onClick={closeNav}
-              >
-                <i className="fas fa-home me-1"></i>Home
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink 
-                className={({isActive}) => `nav-link ${isActive ? 'active' : ''}`}
-                to="/products"
-                onClick={closeNav}
-              >
-                <i className="fas fa-shopping-bag me-1"></i>Products
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink 
-                className={({isActive}) => `nav-link ${isActive ? 'active' : ''}`}
-                to="/contact"
-                onClick={closeNav}
-              >
-                <i className="fas fa-envelope me-1"></i>Contact
-              </NavLink>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <Navbar 
+      bg="light" 
+      expand="lg" 
+      sticky="top" 
+      className="shadow-sm"
+      expanded={expanded}
+      onToggle={() => setExpanded(!expanded)}
+    >
+      <Container>
+        <Navbar.Brand as={NavLink} to="/" className="fw-bold">
+          <i className="bi bi-box me-2"></i>ProdManager
+        </Navbar.Brand>
+        
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ms-auto">
+            <Nav.Link 
+              as={NavLink} 
+              to="/" 
+              className={({ isActive }) => isActive ? "active" : ""}
+              onClick={() => setExpanded(false)}
+            >
+              <i className="bi bi-house me-1"></i>Home
+            </Nav.Link>
+            
+            <Nav.Link 
+              as={NavLink} 
+              to="/products" 
+              className={({ isActive }) => isActive ? "active" : ""}
+              onClick={() => setExpanded(false)}
+            >
+              <i className="bi bi-bag me-1"></i>Products
+            </Nav.Link>
+            
+            <Nav.Link 
+              as={NavLink} 
+              to="/contact" 
+              className={({ isActive }) => isActive ? "active" : ""}
+              onClick={() => setExpanded(false)}
+            >
+              <i className="bi bi-envelope me-1"></i>Contact
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 
-export default Navbar;
+export default CustomNavbar;

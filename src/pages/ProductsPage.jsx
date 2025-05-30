@@ -75,11 +75,11 @@ const ProductsPage = () => {
       <section className="py-4">
         <Row className="align-items-center">
           <Col md={8}>
-            <h1 className="display-5 fw-bold text-primary mb-2">Our Products</h1>
+            <h1 className="display-5 fw-bold text-black mb-2">Our Products</h1>
             <p className="lead text-muted">Discover our amazing collection of products</p>
           </Col>
           <Col md={4} className="text-md-end">
-            <Button variant="dark" size="lg" onClick={() => setShowAddModal(true)}>
+            <Button variant="dark" size="md" onClick={() => setShowAddModal(true)}>
               <i className="bi bi-plus-lg me-2"></i> Add Product
             </Button>
           </Col>
