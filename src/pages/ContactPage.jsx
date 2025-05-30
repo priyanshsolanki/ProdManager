@@ -14,7 +14,7 @@ const ContactPage = () => {
       style={{ maxWidth: "500px", width: "100%", maxHeight: "50vh" }}
     >
       <div className="card-body p-4">
-        <h2 className="card-title text-center mb-4">Get in Touch</h2>
+        <h2 className="card-title text-center mb-4">Contact us</h2>
   
         {/* Address */}
         <div className="d-flex mb-4">

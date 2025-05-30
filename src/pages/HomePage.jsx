@@ -13,15 +13,14 @@ const HomePage = () => {
           <div className="col-lg-6">
             <h1 className="display-4 fw-bold mb-4">Welcome to ProdManager</h1>
             <p className="lead mb-4">
-              Your ultimate solution for managing and showcasing products. 
-              Streamline your inventory, boost your sales, and grow your business.
+             Effortlessly manage your products with our all-in-one tool. Create, view, edit, and delete products — fast, simple, and reliable.
             </p>
             <div className="d-flex flex-wrap gap-3">
               <button 
                 className="btn btn-light btn-lg"
                 onClick={() => navigate('/products')}
               >
-                <i className="fas fa-shopping-bag me-2"></i>View Products
+                <i className="bi bi-bag-fill me-2"></i>View Products
               </button>
             </div>
           </div>

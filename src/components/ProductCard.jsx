@@ -1,31 +1,38 @@
-// components/ProductCard.js
-import React from 'react';
+import React from "react";
+import { Card, Button, ListGroup, Col } from "react-bootstrap";
 
 const ProductCard = ({ product }) => (
-  <div className="col-lg-4 col-md-6">
-    <div className="card h-100 shadow-sm border-0">
-      <div style={{width:"100%",height:"250px",display:'flex',justifyContent:"center",alignItems:"center"}}>
-      <div style={{width:"200px"}}>
-      <img 
-        src={product.image} 
-        className="card-img-top" 
-        alt={product.name}
-        style={{width: '100%', objectFit: 'cover'}}
-      />
+  <Col lg={4} md={6} className="mb-4">
+    <Card className="h-100 shadow-sm">
+      <div className="d-flex justify-content-center align-items-center p-3" style={{ height: '200px' }}>
+        <Card.Img 
+          variant="top" 
+          src={product.image} 
+          style={{ maxHeight: '180px', width: 'auto', objectFit: 'contain' }}
+        />
       </div>
-      </div>
-      <div className="card-body d-flex flex-column">
-        <div className="d-flex justify-content-between align-items-start mb-2">
-          <h5 className="card-title">{product.name}</h5>
+      <Card.Body>
+        <Card.Title className="d-flex justify-content-between">
+          {product.name}
           <span className="badge bg-secondary">{product.category}</span>
-        </div>
-        <p className="card-text text-muted flex-grow-1">{product.description}</p>
-        <div className="d-flex justify-content-between align-items-center mt-auto">
+        </Card.Title>
+        <Card.Text>{product.description}</Card.Text>
+      </Card.Body>
+      <ListGroup className="list-group-flush">
+        <ListGroup.Item className="d-flex justify-content-between align-items-center">
           <span className="h5 text-primary mb-0">{product.price}</span>
-        </div>
-      </div>
-    </div>
-  </div>
+          <div>
+            <Button variant="outline-primary" size="sm" className="me-2">
+              <i className="bi bi-pencil"></i> Edit
+            </Button>
+            <Button variant="outline-danger" size="sm">
+              <i className="bi bi-trash"></i> Delete
+            </Button>
+          </div>
+        </ListGroup.Item>
+      </ListGroup>
+    </Card>
+  </Col>
 );
 
 export default ProductCard;
