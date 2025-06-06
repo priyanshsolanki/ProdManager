@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import ProductsPage from "./pages/ProductsPage";
-import ContactPage from "./pages/ContactPage";
+import HomePage from "./pages/home";
+import ProductsPage from "./pages/products";
+import ContactPage from "./pages/contact";
 import "./App.css";
 import CustomNavbar from "./components/Navbar";
 import { Provider } from "react-redux";
