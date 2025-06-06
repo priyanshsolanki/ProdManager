@@ -20,7 +20,7 @@ const ProductCard = ({ product,handleEditProduct,handleDeleteProduct }) => (
       </Card.Body>
       <ListGroup className="list-group-flush">
         <ListGroup.Item className="d-flex justify-content-between align-items-center">
-          <span className="h5 text-primary mb-0">{product.price}</span>
+          <span className="h5 text-primary mb-0">${product.price}</span>
           <div>
             <Button onClick={() => handleEditProduct(product)} variant="outline-primary" size="sm" className="me-2">
               <i className="bi bi-pencil"></i> Edit
