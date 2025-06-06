@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Button, ListGroup, Col } from "react-bootstrap";
 
-const ProductCard = ({ product }) => (
+const ProductCard = ({ product,handleEditProduct,handleDeleteProduct }) => (
   <Col lg={4} md={6} className="mb-4">
     <Card className="h-100 shadow-sm">
       <div className="d-flex justify-content-center align-items-center p-3" style={{ height: '200px' }}>
@@ -22,10 +22,10 @@ const ProductCard = ({ product }) => (
         <ListGroup.Item className="d-flex justify-content-between align-items-center">
           <span className="h5 text-primary mb-0">{product.price}</span>
           <div>
-            <Button variant="outline-primary" size="sm" className="me-2">
+            <Button onClick={() => handleEditProduct(product)} variant="outline-primary" size="sm" className="me-2">
               <i className="bi bi-pencil"></i> Edit
             </Button>
-            <Button variant="outline-danger" size="sm">
+            <Button onClick={()=>handleDeleteProduct(product.id)} variant="outline-danger" size="sm">
               <i className="bi bi-trash"></i> Delete
             </Button>
           </div>

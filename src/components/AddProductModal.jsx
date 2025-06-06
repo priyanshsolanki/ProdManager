@@ -1,45 +1,54 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal, Form, Button } from "react-bootstrap";
 
-const AddProductModal = ({ show, onHide, onSave }) => {
-  const [newProduct, setNewProduct] = useState({
+const ProductModal = ({ show, onHide, onSave, editingProduct }) => {
+  const [productData, setProductData] = useState({
     name: "",
     price: "",
     category: "",
     description: "",
-    image: ""
+    image: "",
   });
+
+  useEffect(() => {
+    if (editingProduct) {
+      setProductData(editingProduct);
+    } else {
+      setProductData({
+        name: "",
+        price: "",
+        category: "",
+        description: "",
+        image: "",
+      });
+    }
+  }, [editingProduct]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setNewProduct({ ...newProduct, [name]: value });
+    setProductData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSave(newProduct);
-    setNewProduct({
-      name: "",
-      price: "",
-      category: "",
-      description: "",
-      image: ""
-    });
+    onSave(productData);
+    onHide();
   };
 
   return (
     <Modal show={show} onHide={onHide} size="lg">
       <Modal.Header closeButton>
-        <Modal.Title>Add New Product</Modal.Title>
+        <Modal.Title>{editingProduct ? "Edit Product" : "Add New Product"}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
+          {/* Same fields as before */}
           <Form.Group className="mb-3">
             <Form.Label>Product Name</Form.Label>
             <Form.Control
               type="text"
               name="name"
-              value={newProduct.name}
+              value={productData.name}
               onChange={handleChange}
               required
             />
@@ -50,7 +59,7 @@ const AddProductModal = ({ show, onHide, onSave }) => {
             <Form.Control
               type="text"
               name="price"
-              value={newProduct.price}
+              value={productData.price}
               onChange={handleChange}
               required
             />
@@ -61,7 +70,7 @@ const AddProductModal = ({ show, onHide, onSave }) => {
             <Form.Control
               type="text"
               name="category"
-              value={newProduct.category}
+              value={productData.category}
               onChange={handleChange}
               required
             />
@@ -73,7 +82,7 @@ const AddProductModal = ({ show, onHide, onSave }) => {
               as="textarea"
               rows={3}
               name="description"
-              value={newProduct.description}
+              value={productData.description}
               onChange={handleChange}
               required
             />
@@ -84,9 +93,8 @@ const AddProductModal = ({ show, onHide, onSave }) => {
             <Form.Control
               type="url"
               name="image"
-              value={newProduct.image}
+              value={productData.image}
               onChange={handleChange}
-              placeholder="https://example.com/image.jpg"
               required
             />
           </Form.Group>
@@ -96,7 +104,7 @@ const AddProductModal = ({ show, onHide, onSave }) => {
               Cancel
             </Button>
             <Button variant="primary" type="submit">
-              Save Product
+              {editingProduct ? "Update Product" : "Save Product"}
             </Button>
           </div>
         </Form>
@@ -105,4 +113,4 @@ const AddProductModal = ({ show, onHide, onSave }) => {
   );
 };
 
-export default AddProductModal;
+export default ProductModal;
