@@ -37,9 +37,8 @@ const ProductsPage = () => {
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
-
   return (
-    <Container>
+    !loading ? <Container>
       {/* Page Header */}
       <section className="py-4">
         <Row className="align-items-center">
@@ -54,7 +53,7 @@ const ProductsPage = () => {
           </Col>
         </Row>
       </section>
-
+      
       {/* Products Grid */}
       <section className="py-5">
         <Row className="g-4">
@@ -94,7 +93,8 @@ const ProductsPage = () => {
         onSave={handleSaveProduct}
         editingProduct={editingProduct}
       />
-    </Container>
+    </Container> : 
+    <span class="loader"></span>
   );
 };
 
