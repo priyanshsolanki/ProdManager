@@ -41,7 +41,7 @@ app.get('/api/products', async (req, res) => {
 
 app.get('/api/products/:id', async (req, res) => {
   try {
-    const product = await Product.findById(req.params._id);
+    const product = await Product.findById(req.params.id);
     product ? res.json(product) : res.status(404).send('Not found');
   } catch {
     res.status(404).send('Invalid ID');
@@ -50,7 +50,7 @@ app.get('/api/products/:id', async (req, res) => {
 
 app.put('/api/products/:id', async (req, res) => {
   try {
-    const updated = await Product.findByIdAndUpdate(req.params._id, req.body, { new: true });
+    const updated = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
     updated ? res.json(updated) : res.status(404).send('Not found');
   } catch {
     res.status(404).send('Invalid ID');
@@ -59,7 +59,7 @@ app.put('/api/products/:id', async (req, res) => {
 
 app.delete('/api/products/:id', async (req, res) => {
   try {
-    await Product.findByIdAndDelete(req.params._id);
+    await Product.findByIdAndDelete(req.params.id);
     res.status(200).send('Deleted');
   } catch {
     res.status(404).send('Invalid ID');

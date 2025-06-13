@@ -25,7 +25,6 @@ const ProductsPage = () => {
   };
   
   const handleSaveProduct = (product) => {
-    console.log(product)
     if (product._id) {
       dispatch(updateProduct(product._id,product));
     } else {
