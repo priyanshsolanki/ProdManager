@@ -25,7 +25,7 @@ const ProductCard = ({ product,handleEditProduct,handleDeleteProduct }) => (
             <Button onClick={() => handleEditProduct(product)} variant="outline-primary" size="sm" className="me-2">
               <i className="bi bi-pencil"></i> Edit
             </Button>
-            <Button onClick={()=>handleDeleteProduct(product.id)} variant="outline-danger" size="sm">
+            <Button onClick={()=>handleDeleteProduct(product._id)} variant="outline-danger" size="sm">
               <i className="bi bi-trash"></i> Delete
             </Button>
           </div>

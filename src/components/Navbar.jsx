@@ -50,6 +50,15 @@ const CustomNavbar = () => {
             >
               <i className="bi bi-envelope me-1"></i>Contact
             </Nav.Link>
+
+            <Nav.Link 
+              as={NavLink} 
+              to="/register" 
+              className={({ isActive }) => isActive ? "active" : ""}
+              onClick={() => setExpanded(false)}
+            >
+              <i className="bi bi-person-fill-add me-1"></i>Register
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

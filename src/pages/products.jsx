@@ -25,8 +25,9 @@ const ProductsPage = () => {
   };
   
   const handleSaveProduct = (product) => {
-    if (product.id) {
-      dispatch(updateProduct(product.id,product));
+    console.log(product)
+    if (product._id) {
+      dispatch(updateProduct(product._id,product));
     } else {
       dispatch(createProduct(product));
     }
@@ -59,7 +60,7 @@ const ProductsPage = () => {
         <Row className="g-4">
           {products.length > 0 ? (
             products.map((product) => (
-              <ProductCard key={product.id} product={product}   
+              <ProductCard key={product._id} product={product}   
               handleEditProduct={handleEditProduct}
               handleDeleteProduct={handleDeleteProduct}/>
             ))
@@ -94,7 +95,7 @@ const ProductsPage = () => {
         editingProduct={editingProduct}
       />
     </Container> : 
-    <span class="loader"></span>
+    <span className="loader"></span>
   );
 };
 
