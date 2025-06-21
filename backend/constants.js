@@ -1,0 +1,2 @@
+export const MONGO_URI = "mongodb+srv://priyanshsolanki1:9ifb22LtlcdewtkG@prodmanager.jcacuny.mongodb.net/ProdManager?retryWrites=true&w=majority&appName=ProdManager";
+export const JWT_SECRET = "thisismyjwtsecret";
