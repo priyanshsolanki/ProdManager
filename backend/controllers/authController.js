@@ -1,10 +1,9 @@
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import { JWT_SECRET } from "../constants.js";
 
 const generateToken = (user) => {
-  return jwt.sign({ id: user._id, email: user.email }, JWT_SECRET, {
+  return jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, {
     expiresIn: "1d",
   });
 };

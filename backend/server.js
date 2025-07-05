@@ -5,7 +5,6 @@ import cors from 'cors';
 
 import authRoutes from './routes/authRoutes.js';
 import productRoutes from './routes/productRoutes.js';
-import { MONGO_URI } from './constants.js';
 
 dotenv.config();
 
@@ -18,7 +17,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 
 // DB Connection
-mongoose.connect(MONGO_URI, {
+mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
