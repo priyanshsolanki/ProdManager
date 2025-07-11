@@ -14,7 +14,7 @@ setupSwagger(app);
 
 // Use specific origin for security
 const allowedOrigins = [
-  'https://product-manager-priyanshsolankis-projects.vercel.app/',
+  'https://product-manager-priyanshsolankis-projects.vercel.app',
   'http://localhost:5173' // dev
 ];
 
