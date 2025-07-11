@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import { useAuth } from '../context/AuthContext';
 
 const CustomNavbar = () => {
   const [expanded, setExpanded] = useState(false);
-
+  const {logout,authUser} = useAuth();
   return (
     <Navbar 
       bg="light" 
@@ -18,6 +19,7 @@ const CustomNavbar = () => {
       <Container>
         <Navbar.Brand as={NavLink} to="/" className="fw-bold">
           <i className="bi bi-box me-2"></i>ProdManager
+
         </Navbar.Brand>
         
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -50,15 +52,23 @@ const CustomNavbar = () => {
             >
               <i className="bi bi-envelope me-1"></i>Contact
             </Nav.Link>
-
-            <Nav.Link 
+            {authUser == null ? <Nav.Link 
               as={NavLink} 
-              to="/register" 
+              to="/login" 
               className={({ isActive }) => isActive ? "active" : ""}
               onClick={() => setExpanded(false)}
             >
-              <i className="bi bi-person-fill-add me-1"></i>Register
+              <i className="bi bi-person-fill-add me-1"></i>Login
             </Nav.Link>
+            :<Nav.Link 
+            as={NavLink} 
+            to="/login" 
+            className={({ isActive }) => isActive ? "active" : ""}
+            onClick={() => logout()}
+          >
+            <i className="bi bi-person-fill-add me-1"></i>Logout
+          </Nav.Link>
+            }
           </Nav>
         </Navbar.Collapse>
       </Container>

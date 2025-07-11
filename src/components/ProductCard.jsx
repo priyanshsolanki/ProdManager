@@ -1,7 +1,13 @@
 import React from "react";
 import { Card, Button, ListGroup, Col } from "react-bootstrap";
+import { useAuth } from "../context/AuthContext";
+import {jwtDecode} from "jwt-decode";
 
-const ProductCard = ({ product,handleEditProduct,handleDeleteProduct }) => (
+const ProductCard = ({ product, handleEditProduct, handleDeleteProduct }) => {
+  const {token} = useAuth();
+  const role = jwtDecode(token).role;
+
+  return(
   <Col lg={4} md={6} className="mb-4">
     <Card className="h-100 shadow-sm">
       <div className="d-flex justify-content-center align-items-center p-3" style={{ height: '200px' }}>
@@ -21,18 +27,18 @@ const ProductCard = ({ product,handleEditProduct,handleDeleteProduct }) => (
       <ListGroup className="list-group-flush">
         <ListGroup.Item className="d-flex justify-content-between align-items-center">
           <span className="h5 text-primary mb-0">${product.price}</span>
-          <div>
+          {role == "admin" && <div>
             <Button onClick={() => handleEditProduct(product)} variant="outline-primary" size="sm" className="me-2">
               <i className="bi bi-pencil"></i> Edit
             </Button>
-            <Button onClick={()=>handleDeleteProduct(product._id)} variant="outline-danger" size="sm">
+            <Button onClick={() => handleDeleteProduct(product._id)} variant="outline-danger" size="sm">
               <i className="bi bi-trash"></i> Delete
             </Button>
-          </div>
+          </div>}
         </ListGroup.Item>
       </ListGroup>
     </Card>
   </Col>
-);
+)};
 
 export default ProductCard;

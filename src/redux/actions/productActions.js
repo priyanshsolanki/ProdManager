@@ -25,7 +25,8 @@ export const fetchProducts = () => async (dispatch) => {
   dispatch({ type: FETCH_PRODUCTS_REQUEST });
   try {
     const response = await axiosInstance.get('/api/products');
-    dispatch({ type: FETCH_PRODUCTS_SUCCESS, payload: response.data });
+    console.log(response)
+    dispatch({ type: FETCH_PRODUCTS_SUCCESS, payload: response.data.products });
   } catch (error) {
     dispatch({ type: FETCH_PRODUCTS_FAILURE, payload: error.message });
     toast.error('Failed to load products');
