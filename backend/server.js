@@ -12,7 +12,17 @@ dotenv.config();
 const app = express();
 setupSwagger(app);
 
-app.use(cors());
+// Use specific origin for security
+const allowedOrigins = [
+  'https://product-manager-5i0xk5sz0-priyanshsolankis-projects.vercel.app',
+  'http://localhost:5173' // dev
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true,
+}));
+
 app.use(express.json());
 
 // Routes

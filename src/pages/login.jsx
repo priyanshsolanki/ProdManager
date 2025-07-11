@@ -20,7 +20,6 @@ const LoginPage = () => {
   const handleLogin = async (values) => {
     try {
       const verifiedUser = await authenticate(values.email, values.password);
-      console.log(verifiedUser);
       setVerifiedAuthUser(verifiedUser);
       navigate('/products')
     } catch (err) {

@@ -22,7 +22,6 @@ const authService = {
         jwtToken: res.data.token,
       };
     } catch (error) {
-      console.log(error)
       handleApiError(error, error.response.data.error || 'Registration failed');
     }
   },
