@@ -9,6 +9,9 @@ import {
     loading: false,
     products: [],
     error: null,
+    page: 1,
+    totalPages: 1,
+    total: 0,
   };
   
   const productReducer = (state = initialState, action) => {
@@ -22,8 +25,15 @@ import {
       case CREATE_PRODUCT_SUCCESS:
         return { ...state, loading: false, products: [...state.products, action.payload] };
   
-      case FETCH_PRODUCTS_SUCCESS:
-        return { ...state, loading: false, products: action.payload };
+        case FETCH_PRODUCTS_SUCCESS:
+          return {
+            ...state,
+            loading: false,
+            products: action.payload.products,
+            page: action.payload.page,
+            totalPages: action.payload.totalPages,
+            total: action.payload.total,
+          };
   
       case UPDATE_PRODUCT_SUCCESS:
         return {

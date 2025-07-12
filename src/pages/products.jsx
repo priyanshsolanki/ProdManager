@@ -18,14 +18,22 @@ const AddProductModal = lazy(() => import("../components/AddProductModal"));
 
 const ProductsPage = () => {
   const dispatch = useDispatch();
-  const { products, loading, error } = useSelector((state) => state.products);
+  const { products, loading, error, page, totalPages } = useSelector((state) => state.products);
   const [editingProduct, setEditingProduct] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const {token} = useAuth();
   const role = jwtDecode(token).role;
+  const [currentPage, setCurrentPage] = useState(1);
+
   useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
+    dispatch(fetchProducts(currentPage));
+  }, [dispatch, currentPage]);
+  
+  const handlePageChange = (newPage) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+    }
+  };
 
   const handleAddClick = () => {
     setEditingProduct(null);
@@ -122,7 +130,30 @@ const ProductsPage = () => {
               </Col>
             )}
           </Row>
+           {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <div className="d-flex justify-content-center mt-4">
+            <Button
+              variant="outline-dark"
+              disabled={currentPage === 1}
+              onClick={() => handlePageChange(currentPage - 1)}
+            >
+              Previous
+            </Button>
+            <span className="mx-3 align-self-center">
+              Page {page} of {totalPages}
+            </span>
+            <Button
+              variant="outline-dark"
+              disabled={currentPage === totalPages}
+              onClick={() => handlePageChange(currentPage + 1)}
+            >
+              Next
+            </Button>
+          </div>
+        )}
         </section>
+       
 
         {/* Add/Edit Modal */}
         <AddProductModal

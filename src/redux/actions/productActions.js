@@ -21,16 +21,25 @@ export const createProduct = (productData) => async (dispatch) => {
 };
 
 // Fetch Products
-export const fetchProducts = () => async (dispatch) => {
+export const fetchProducts = (page = 1, limit = 6) => async (dispatch) => {
   dispatch({ type: FETCH_PRODUCTS_REQUEST });
   try {
-    const response = await axiosInstance.get('/api/products');
-    dispatch({ type: FETCH_PRODUCTS_SUCCESS, payload: response.data.products });
+    const response = await axiosInstance.get(`/api/products?page=${page}&limit=${limit}`);
+    dispatch({
+      type: FETCH_PRODUCTS_SUCCESS,
+      payload: {
+        products: response.data.products,
+        total: response.data.total,
+        page: response.data.page,
+        totalPages: response.data.totalPages,
+      },
+    });
   } catch (error) {
     dispatch({ type: FETCH_PRODUCTS_FAILURE, payload: error.message });
     toast.error('Failed to load products');
   }
 };
+
 
 // Update Product
 export const updateProduct = (id, productData) => async (dispatch) => {
